@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Hockey Awards 2026</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="glow-bg"></div>
+    
+    <nav class="navbar">
+        <div class="logo">TH-AWARDS <span>2026</span></div>
+        <div class="nav-right">
+            <select id="langSelect" onchange="changeLanguage(this.value)">
+                <option value="en">English</option>
+                <option value="ua">Українська</option>
+                <option value="lv">Latviešu</option>
+                <option value="sv">Svenska</option>
+            </select>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1 id="mainTitle">Table Hockey Awards</h1>
+            <p class="hero-date">05.12.2026 • Riga Cup Special</p>
+            <a href="#nominations" class="btn-main" id="btnStart">START VOTING</a>
+        </div>
+    </header>
+
+    <section id="nominations" class="container">
+        <h2 class="section-title" id="nomTitle">Nominations</h2>
+        <div class="nom-grid" id="nomGrid"></div>
+    </section>
+
+    <div id="voteModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle">Nomination</h2>
+            <p id="modalDesc"></p>
+            <div class="candidates-grid" id="candidatesGrid"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Table Hockey Awards | Riga Cup Official Event</p>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+        // ВСТАВЬ СВОЙ КОНФИГ ИЗ FIREBASE КОНСОЛИ ТУТ:
+        const firebaseConfig = {
+            apiKey: "AIzaSyCRZ63Rb__Prajsvq7D-cSQuJggy8HE6V0",
+            authDomain: "tablehockeyawards2026.firebaseapp.com",
+            databaseURL: "https://tablehockeyawards2026-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "tablehockeyawards2026",
+            storageBucket: "tablehockeyawards2026.firebasestorage.app",
+            messagingSenderId: "193773257430",
+            appId: "1:193773257430:web:2c09a386b3b3e50edeff77"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        // Экспортируем функции в глобальное окно для script.js
+        window.firebaseDB = database;
+        window.dbRef = ref;
+        window.dbPush = push;
+        window.dbSet = set;
+    </script>
+
+    <script src="translations.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
